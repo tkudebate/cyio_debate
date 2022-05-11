@@ -1,0 +1,814 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    <title>宮燈盃計時器</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/lantern.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/fullpage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&display=swap" rel="stylesheet">
+    <style>
+        html {height: 100%;}
+    </style>
+    </head>
+<body>
+    <audio id="bell1" src="audio/bell1.mp3"></audio>
+    <audio id="bell2" src="audio/bell2.mp3"></audio>
+    <div id="fullpage">
+ <!-- page home -->
+            <div class="section home">
+                <div class="content">
+                    <h1 class="ml11">
+                        <span class="text-wrapper">
+                          <span class="line line1"></span>
+                          <span class="letters">宮燈盃辯論公開賽</span>
+                        </span>
+                    </h1>
+                    <h1 class="ml1">
+                        <span class="text-wrapper">
+                        <span class="line line1"></span>
+                        <span class="letters">U-18 Palace Lantern Open Debate</span>
+                        <span class="line line2"></span>
+                        </span>
+                    </h1>
+                </div>
+            </div>
+ <!-- page 1 -->
+            <div class="section s1">
+                <div class="slide">
+                <h1>
+                <section id="main">
+                    <div class="left">
+                        <head class="left">
+                            <p style="font-size: 90px;">正一</p>
+                        </head>
+                    </div>
+                    <div class="inner">
+                        <section id="one" class="wrapper style1">
+                            <header class="special">
+                                <p style="font-size: 170px;" id="demo" >3:30</p>
+                            </header>
+                        </section>
+                    </div>
+                    <div class="inner2">
+                        <button onclick="start()"><img src="images/play.png"width="60px"></button>&emsp;
+                        <button onclick="pause()"><img src="images/pause.png"width="60px" ></button>&emsp;
+                        <button onclick="reset()"><img src="images/restart.png"width="60px" ></button>
+                    </div>
+                </section>
+                <script>
+                    var control = 1;
+                    var min = 3;
+                    var sec = 30;
+                    var mytimer;
+                    var audio1 = document.getElementById("bell1");
+                    var audio2 = document.getElementById("bell2");
+                    function start() {
+                    if (control == 1) {
+                        mytimer = setInterval(myTimer, 1000);
+                        control--;
+                        }
+                    }
+
+                    function myTimer() {
+                        sec -= 1;
+                        if (min <= 0 && sec <= 0){
+                            clearInterval(mytimer);
+                            control = 1;
+                            min = 3;
+                            sec = 30;
+                            audio2.play()
+                            document.getElementById("demo").innerHTML = "0:00";
+                            return false;
+                        }
+                        if (sec < 0) {
+                            min -= 1;
+                            sec = 59
+                        }
+                        if (sec < 10) {
+                            document.getElementById("demo").innerHTML = min + ":0" + sec ;
+                        } 
+                        else
+                            document.getElementById("demo").innerHTML = min + ":" + sec ;
+                        if (min ==0 && sec == 30){
+                        audio1.play() 
+                        }
+                    }
+                    function reset() {
+                        clearInterval(mytimer);
+                        min = 3;
+                        sec = 30;
+                        document.getElementById("demo").innerHTML = min + ":"  + sec ;
+                        control = 1;
+                    }
+
+                    function pause() {
+                        clearInterval(mytimer);
+                        control = 1;
+                    }
+                </script>
+
+            <!-- 反方計時器 -->
+                    <!-- Main -->
+                    <section id="main2">
+                        <div class="left2">
+                            <head class="left2">
+                                <p style="font-size: 90px;">反一</p>
+                            </head>
+                        </div>
+                        <div class="innerright">
+                            <!-- One -->
+                            <section id="one" class="wrapper style1">
+                                <header class="special">
+                                    <p style="font-size: 170px;" id="demo12" >3:30</p>
+                                </header>
+                            </section>
+                        </div>
+                        <div class="inner2right">
+                            <button onclick="start反二質()"><img src="images/play.png"width="60px" ></button>&emsp;
+                            <button onclick="pause反二質()"><img src="images/pause.png"width="60px"></button>&emsp;
+                            <button onclick="reset反二質()"><img src="images/restart.png"width="60px"></button>
+                        </div>
+                    </section>
+                    <script>
+                    var control12 = 1;
+                    var min12 = 3;
+                    var sec12 = 30;
+                    var mytimer12;
+                    var audio1 = document.getElementById("bell1");
+                    var audio2 = document.getElementById("bell2");
+
+                    function start反二質() {
+                        if (control12 == 1) {
+                            mytimer12 = setInterval(myTimer12, 1000);
+                            control12--;
+                        }
+                    }
+                    function myTimer12() {
+                        sec12 -= 1;
+                        if (min12 <= 0 && sec12 <= 0){
+                            clearInterval(mytimer12);
+                            control12 = 1;
+                            min12 = 3;
+                            sec12 = 30;
+                            audio2.play()
+                            document.getElementById("demo12").innerHTML = "0:00";
+                            return false;
+                        }
+                        if (sec12 < 0) {
+                            min12 -= 1;
+                            sec12 = 59
+                        }
+                        if (sec12 < 10) {
+                            document.getElementById("demo12").innerHTML = min12 + ":0" + sec12 ;
+                        } 
+                        else
+                            document.getElementById("demo12").innerHTML = min12 + ":" + sec12 ;
+                        if (min12 ==0 && sec12 == 30){
+                            audio1.play() 
+                            }
+                        }
+                        function reset反二質() {
+                            clearInterval(mytimer12);
+                            min12 = 3;
+                            sec12 = 30;
+                            document.getElementById("demo12").innerHTML = min12 + ":" + sec12 ;
+                            control12 = 1;
+                        }
+                        function pause反二質() {
+                            clearInterval(mytimer12);
+                            control12 = 1;
+                        }
+                    </script>
+                </h1>
+                </div>
+            </div>
+ <!-- page 2 -->
+            <div class="section s2">
+                <div class="slide">
+                    <h1>
+                    <section id="main">
+                        <div class="left">
+                            <head class="left">
+                                <p style="font-size: 90px;">正一</p>
+                            </head>
+                        </div>
+                        <div class="inner">
+                            <section id="one" class="wrapper style1">
+                                <header class="special">
+                                    <p style="font-size: 170px;" id="demo21" >2:30</p>
+                                </header>
+                            </section>
+                        </div>
+                        <div class="inner2">
+                            <button onclick="start正一質()"><img src="images/play.png"width="60px" margin-left="100px;"></button>&emsp;
+                            <button onclick="pause正一質()"><img src="images/pause.png"width="60px" margin-left="150px;"></button>&emsp;
+                            <button onclick="reset正一質()"><img src="images/restart.png"width="60px" margin-left="200px;"></button>
+                        </div>
+                    </section>
+                    <script>
+                        var control21 = 1;
+                        var min21 = 2;
+                        var sec21 = 30;
+                        var mytimer21;
+                        var audio1 = document.getElementById("bell1");
+                        var audio2 = document.getElementById("bell2");
+                        function start正一質() {
+                        if (control21 == 1) {
+                            mytimer21 = setInterval(myTimer21, 1000);
+                            control21--;
+                        }
+                        }
+    
+                        function myTimer21() {
+                            sec21 -= 1;
+                            if (min21 <= 0 && sec21 <= 0){
+                            clearInterval(mytimer21);
+                            control21 = 1;
+                            min21 = 2;
+                            sec21 = 30;
+                            audio2.play()
+                            document.getElementById("demo21").innerHTML = "0:00";
+                            return false;
+                            }
+                            if (sec21 < 0) {
+                                min21 -= 1;
+                                sec21 = 59
+                            }
+                            if (sec21 < 10) {
+                                document.getElementById("demo21").innerHTML = min21 + ":0" + sec21 ;
+                            } 
+                            else
+                                document.getElementById("demo21").innerHTML = min21 + ":" + sec21 ;
+                            if (min21 ==0 && sec21 == 30){
+                            audio1.play() 
+                            }
+                        }
+                        function reset正一質() {
+                            clearInterval(mytimer21);
+                            min21 = 2;
+                            sec21 = 30;
+                            document.getElementById("demo21").innerHTML = min21 + ":" + sec21 ;
+                            control21 = 1;
+                        }
+    
+                        function pause正一質() {
+                            clearInterval(mytimer21);
+                            control21 = 1;
+                        }
+                    </script>
+            
+                <!-- 反方計時器 -->
+                        <section id="main2">
+                            <div class="left2">
+                                <head class="left2">
+                                    <p style="font-size: 90px;">反一</p>
+                                </head>
+                            </div>
+                            <div class="innerright">
+                                <section id="one" class="wrapper style1">
+                                    <header class="special">
+                                        <p style="font-size: 170px;" id="demo22" >2:30</p>
+                                    </header>
+                                </section>
+                            </div>
+                            <div class="inner2right">
+                                <button onclick="start反二申()"><img src="images/play.png"width="60px" ></button>&emsp;
+                                <button onclick="pause反二申()"><img src="images/pause.png"width="60px"></button>&emsp;
+                                <button onclick="reset反二申()"><img src="images/restart.png"width="60px"></button>
+                            </div>
+                        </section>
+                        <script>
+                            var control22 = 1;
+                            var min22 = 2;
+                            var sec22 = 30;
+                            var mytimer22;
+                            var audio1 = document.getElementById("bell1");
+                            var audio2 = document.getElementById("bell2");
+                            function start反二申() {
+                            if (control22 == 1) {
+                                mytimer22 = setInterval(myTimer22, 1000);
+                                control22--;
+                            }
+                            }
+        
+                            function myTimer22() {
+                                sec22 -= 1;
+                                if (min22 <= 0 && sec22 <= 0){
+                                clearInterval(mytimer22);
+                                control22 = 1;
+                                min22 = 2;
+                                sec22 = 30;
+                                audio2.play()
+                                document.getElementById("demo22").innerHTML = "0:00";
+                                return false;
+                                }
+                                if (sec22 < 0) {
+                                    min22 -= 1;
+                                    sec22 = 59
+                                }
+                                if (sec22 < 10) {
+                                    document.getElementById("demo22").innerHTML = min22 + ":0" + sec22 ;
+                                } 
+                                else
+                                    document.getElementById("demo22").innerHTML = min22 + ":" + sec22 ;
+                                if (min22 ==0 && sec22 == 30){
+                                audio1.play() 
+                                }
+                            }
+                            function reset反二申() {
+                                clearInterval(mytimer22);
+                                min22 = 2;
+                                sec22 = 30;
+                                document.getElementById("demo22").innerHTML = min22 + ":"  + sec22 ;
+                                control22 = 1;
+                            }
+        
+                            function pause反二申() {
+                                clearInterval(mytimer22);
+                                control22 = 1;
+                            }
+                        </script>
+                    </h1>
+                </div>
+            </div>
+ <!-- page 3 -->
+            <div class="section s3">
+                <div class="slide">
+                    <h1>
+                    <section id="main">
+                        <div class="left">
+                            <head class="left">
+                                <p style="font-size: 90px;">正三</p>
+                            </head>
+                        </div>
+                        <div class="inner">
+                            <section id="one" class="wrapper style1">
+                                <header class="special">
+                                    <p style="font-size: 170px;" id="demo61" >2:30</p>
+                                </header>
+                            </section>
+                        </div>
+                        <div class="inner2">
+                            <button onclick="start正方小結()"><img src="images/play.png"width="60px" margin-left="100px;"></button>&emsp;
+                            <button onclick="pause正方小結()"><img src="images/pause.png"width="60px" margin-left="150px;"></button>&emsp;
+                            <button onclick="reset正方小結()"><img src="images/restart.png"width="60px" margin-left="200px;"></button>
+                        </div>
+                    </section>
+                    <script>
+                        var control61 = 1;
+                        var min61 = 2;
+                        var sec61 = 30;
+                        var mytimer61;
+                        var audio1 = document.getElementById("bell1");
+                        var audio2 = document.getElementById("bell2");
+
+                        function start正方小結() {
+                            if (control61 == 1) {
+                                mytimer61 = setInterval(myTimer61, 1000);
+                                control61--;
+                            }
+                        }
+                        function myTimer61() {
+                            sec61 -= 1;
+                            if (min61 <= 0 && sec61 <= 0 ) {
+                                clearInterval(mytimer61);
+                                min61 = 2;
+                                sec61 = 30;
+                                control162 = 1;
+                                audio2.play()
+                                document.getElementById("demo61").innerHTML = "0:00";
+                                return false;
+                            }
+                            if (sec61 < 0) {
+                                min61 -= 1;
+                                sec61 = 59
+                            }
+                            if (sec61 < 10) {
+                                document.getElementById("demo61").innerHTML = min61 + ":0" + sec61 ;
+                            } 
+                            else
+                                document.getElementById("demo61").innerHTML = min61 + ":" + sec61 ;
+                                if (min61 ==0 && sec61 == 30){
+                                audio1.play() 
+                                }
+                            }
+                            function reset正方小結() {
+                                clearInterval(mytimer61);
+                                min61 = 2;
+                                sec61 = 30;
+                                document.getElementById("demo61").innerHTML = min61 + ":" + sec61 ;
+                                control61 = 1;
+                            }
+                            function pause正方小結() {
+                                clearInterval(mytimer61);
+                                control61 = 1;
+                            }
+                        </script>
+                <!-- 反方計時器 -->
+                        <section id="main2">
+                            <div class="left2">
+                                <head class="left2">
+                                    <p style="font-size: 90px;">反三</p>
+                                </head>
+                            </div>
+                            <div class="innerright">
+                                <section id="one" class="wrapper style1">
+                                    <header class="special">
+                                        <p style="font-size: 170px;" id="demo62" >2:30</p>
+                                    </header>
+                                </section>
+                            </div>
+                            <div class="inner2right">
+                                <button onclick="start反方小結()"><img src="images/play.png"width="60px" ></button>&emsp;
+                                <button onclick="pause反方小結()"><img src="images/pause.png"width="60px"></button>&emsp;
+                                <button onclick="reset反方小結()"><img src="images/restart.png"width="60px"></button>
+                            </div>
+                        </section>
+                        <script>
+                            var control62 = 1;
+                            var min62 = 2;
+                            var sec62 = 30;
+                            var mytimer62;
+                            var audio1 = document.getElementById("bell1");
+                            var audio2 = document.getElementById("bell2");
+
+                            function start反方小結() {
+                                if (control62 == 1) {
+                                    mytimer62 = setInterval(myTimer62, 1000);
+                                    control62--;
+                                }
+                            }
+                            function myTimer62() {
+                                sec62 -= 1;
+                                if (min62 <= 0 && sec62 <= 0 ) {
+                                    clearInterval(mytimer62);
+                                    min62 = 2;
+                                    sec62 = 30;
+                                    control62 = 1;
+                                    audio2.play()
+                                    document.getElementById("demo62").innerHTML = "0:00";
+                                    return false;
+                                }
+                                if (sec62 < 0) {
+                                    min62 -= 1;
+                                    sec62 = 59
+                                }
+                                if (sec62 < 10) {
+                                    document.getElementById("demo62").innerHTML = min62 + ":0" + sec62 ;
+                                } 
+                                else
+                                    document.getElementById("demo62").innerHTML = min62 + ":" + sec62 ;
+                                if (min62 ==0 && sec62 == 30){
+                                audio1.play() 
+                                }
+                                }
+                                function reset反方小結() {
+                                    clearInterval(mytimer62);
+                                    min62 = 2;
+                                    sec62 = 30;
+                                    document.getElementById("demo62").innerHTML = min62 + ":"  + sec62 ;
+                                    control62 = 1;
+                                }
+                                function pause反方小結() {
+                                    clearInterval(mytimer62);
+                                    control62 = 1;
+                                }
+                </script>
+                </h1>
+                </div>
+            </div>
+
+ <!-- page 4 -->
+            <div class="section s4">
+                <div class="slide">
+                    <h1>
+                    <section id="main">
+                        <div class="lefts7">
+                            <head class="lefts7">
+                                <p style="font-size: 90px;">正方</p>
+                            </head>
+                        </div>
+                        <div class="inner">
+                            <section id="one" class="wrapper style1">
+                                <header class="special">
+                                    <p style="font-size: 170px;" id="demo71" >4:00</p>
+                                </header>
+                            </section>
+                        </div>
+                        <div class="inner2">
+                            <button onclick="start正方()"><img src="images/play.png"width="60px" margin-left="100px;"></button>&emsp;
+                            <button onclick="pause正方()"><img src="images/pause.png"width="60px" margin-left="150px;"></button>&emsp;
+                            <button onclick="reset正方()"><img src="images/restart.png"width="60px" margin-left="200px;"></button>
+                        </div>
+                    </section>
+                <!-- 反方計時器 -->
+                        <section id="main2">
+                            <div class="left2s7">
+                                <head class="left2s7">
+                                    <p style="font-size: 90px;">反方</p>
+                                </head>
+                            </div>
+                            <div class="innerright">
+                                <section id="one" class="wrapper style1">
+                                    <header class="special">
+                                        <p style="font-size: 170px;" id="demo72" >4:00</p>
+                                    </header>
+                                </section>
+                            </div>
+                            <div class="inner2right">
+                                <button onclick="start反方()"><img src="images/play.png"width="60px" ></button>&emsp;
+                                <button onclick="pause反方()"><img src="images/pause.png"width="60px"></button>&emsp;
+                                <button onclick="reset反方()"><img src="images/restart.png"width="60px"></button>
+                            </div>
+                            <div class="innerturn">
+                                <button onclick="turn()"><img src="images/turn.png"width="120px" ></button>
+                            </div>
+                        </section>
+                        <script>
+                            var control71 = 1;
+                            var min71 = 4;
+                            var sec71 = 0;
+                            var mytimer71;
+                            var audio1 = document.getElementById("bell1");
+                            var audio2 = document.getElementById("bell2");
+        
+                            var control72 = 1;
+                            var min72 = 4;
+                            var sec72 = 0;
+                            var mytimer72;
+        
+                            function turn(){
+                                    if(control71==0){
+                                        if(control72==1){
+                                        clearInterval(mytimer71);
+                                        mytimer72 = setInterval(myTimer72, 1000);
+                                        control71 = 1;
+                                        control72 = 0;
+                                        }
+                                        else{
+                                            clearInterval(mytimer71);
+                                            clearInterval(mytimer72);
+                                            control71 = 1;
+                                            control72 = 1;
+                                        }
+                                    }
+                                    else{
+                                        clearInterval(mytimer72);
+                                        mytimer71 = setInterval(myTimer71, 1000);
+                                        control72 = 1;
+                                        control71 = 0;
+                                    }
+                                }
+                            function start正方() {
+                                if (control71 == 1) {
+                                    mytimer71 = setInterval(myTimer71, 1000);
+                                    control71--;
+                                }
+                            }
+                            function myTimer71() {
+                                sec71 -= 1;
+                            if (min71 <= 0 && sec71 <= 0 ) {
+                                clearInterval(mytimer71);
+                                min71 = 4;
+                                sec71 = 0;
+                                audio2.play()
+                                document.getElementById("demo71").innerHTML = "0:00";
+                                return false;
+                            }
+                                if (sec71 < 0) {
+                                    min71 -= 1;
+                                    sec71 = 59
+                                }
+                                if (sec71 < 10) {
+                                    document.getElementById("demo71").innerHTML = min71 + ":0" + sec71 ;
+                                } 
+                                else
+                                    document.getElementById("demo71").innerHTML = min71 + ":" + sec71 ;
+                                    if (min71 ==0 && sec71 == 30){
+                                audio1.play() 
+                                }
+                            }
+                            function reset正方() {
+                                clearInterval(mytimer71);
+                                min71 = 4;
+                                sec71 = 00;
+                                document.getElementById("demo71").innerHTML = min71 + ":" + "0" + sec71 ;
+                                control71 = 1;
+                            }
+            
+                            function pause正方() {
+                                clearInterval(mytimer71);
+                                control71 = 1;
+                            }
+        
+                            function start反方() {
+                                if (control72 == 1) {
+                                    mytimer72 = setInterval(myTimer72, 1000);
+                                    control72--;
+                                }
+                            }
+                            function myTimer72() {
+                                sec72 -= 1;
+                                if (min72 <= 0 && sec72 <= 0 ) {
+                                clearInterval(mytimer72);
+                                min72 = 4;
+                                sec72 = 0;
+                                audio2.play()
+                                document.getElementById("demo72").innerHTML = "0:00";
+                                return false;
+                            }
+                                if (sec72 < 0) {
+                                    min72 -= 1;
+                                    sec72 = 59
+                                }
+                                if (sec72 < 10) {
+                                    document.getElementById("demo72").innerHTML = min72 + ":0" + sec72 ;
+                                } 
+                                else
+                                    document.getElementById("demo72").innerHTML = min72 + ":" + sec72 ;
+                                if (min72 ==0 && sec72 == 30){
+                                audio1.play() 
+                                }
+                            }
+                            function reset反方() {
+                                clearInterval(mytimer72);
+                                min72 = 4;
+                                sec72 = 00;
+                                document.getElementById("demo72").innerHTML = min72 + ":0" + sec72 ;
+                                control72 = 1;
+                            }
+                
+                            function pause反方() {
+                                clearInterval(mytimer72);
+                                control72 = 1;
+                            }
+                        </script>
+                </h1>
+                </div>
+            </div>
+ <!-- page 5 -->
+            <div class="section s5">
+                <div class="slide">
+                    <h1>
+                    <section id="main">
+                        <div class="left">
+                            <head class="left">
+                                <p style="font-size: 90px;">正四</p>
+                            </head>
+                        </div>
+                        <div class="inner">
+                            <section id="one" class="wrapper style1">
+                                <header class="special">
+                                    <p style="font-size: 170px;" id="demo81" >4:00</p>
+                                </header>
+                            </section>
+                        </div>
+                        <div class="inner2">
+                            <button onclick="start正方結辯()"><img src="images/play.png"width="60px" margin-left="100px;"></button>&emsp;
+                            <button onclick="pause正方結辯()"><img src="images/pause.png"width="60px" margin-left="150px;"></button>&emsp;
+                            <button onclick="reset正方結辯()"><img src="images/restart.png"width="60px" margin-left="200px;"></button>
+                        </div>
+                    </section>
+                    <script>
+                        var control81 = 1;
+                        var min81 = 4;
+                        var sec81 = 00;
+                        var mytimer81;
+                        var audio1 = document.getElementById("bell1");
+                        var audio2 = document.getElementById("bell2");
+
+                        function start正方結辯() {
+                            if (control81 == 1) {
+                                mytimer81 = setInterval(myTimer81, 1000);
+                                control81--;
+                            }
+                        }
+                        function myTimer81() {
+                            sec81 -= 1;
+                            if (min81 <= 0 && sec81 <= 0 ) {
+                                    clearInterval(mytimer81);
+                                    min81 = 4;
+                                    sec81 = 0;
+                                    control81 = 1;
+                                    audio2.play()
+                                    document.getElementById("demo81").innerHTML = "0:00";
+                                    return false;
+                                }
+                            if (sec81 < 0) {
+                                min81 -= 1;
+                                sec81 = 59
+                            }
+                            if (sec81 < 10) {
+                                document.getElementById("demo81").innerHTML = min81 + ":0" + sec81 ;
+                            } 
+                            else
+                                document.getElementById("demo81").innerHTML = min81 + ":" + sec81 ;
+                            if (min81 ==0 && sec81 == 30){
+                            audio1.play() 
+                            }
+                            }
+                            function reset正方結辯() {
+                                clearInterval(mytimer81);
+                                min81 = 4;
+                                sec81 = 00;
+                                document.getElementById("demo81").innerHTML = min81 + ":0" + sec81 ;
+                                control81 = 1;
+                            }
+                            function pause正方結辯() {
+                                clearInterval(mytimer81);
+                                control81 = 1;
+                            }
+                        </script>
+                <!-- 反方計時器 -->
+                        <section id="main2">
+                            <div class="left2">
+                                <head class="left2">
+                                    <p style="font-size: 90px;">反四</p>
+                                </head>
+                            </div>
+                            <div class="innerright">
+                                <section id="one" class="wrapper style1">
+                                    <header class="special">
+                                        <p style="font-size: 170px;" id="demo82" >4:00</p>
+                                    </header>
+                                </section>
+                            </div>
+                            <div class="inner2right">
+                                <button onclick="start反方結辯()"><img src="images/play.png"width="60px" ></button>&emsp;
+                                <button onclick="pause反方結辯()"><img src="images/pause.png"width="60px"></button>&emsp;
+                                <button onclick="reset反方結辯()"><img src="images/restart.png"width="60px"></button>
+                            </div>
+                        </section>
+                        <script>
+                            var control82 = 1;
+                            var min82 = 4;
+                            var sec82 = 00;
+                            var mytimer82;
+                            var audio1 = document.getElementById("bell1");
+                            var audio2 = document.getElementById("bell2");
+        
+                            function start反方結辯() {
+                                if (control82 == 1) {
+                                    mytimer82 = setInterval(myTimer82, 1000);
+                                    control82--;
+                                }
+                            }
+                            function myTimer82() {
+                                sec82 -= 1;
+                                if (min82 <= 0 && sec82 <= 0 ) {
+                                    clearInterval(mytimer82);
+                                    min82 = 4;
+                                    sec82 = 0;
+                                    control82 = 1;
+                                    audio2.play()
+                                    document.getElementById("demo82").innerHTML = "0:00";
+                                    return false;
+                                }
+                                if (sec82 < 0) {
+                                    min82 -= 1;
+                                    sec82 = 59
+                                }
+                                if (sec82 < 10) {
+                                    document.getElementById("demo82").innerHTML = min82 + ":0" + sec82 ;
+                                } 
+                                else
+                                    document.getElementById("demo82").innerHTML = min82 + ":" + sec82 ;
+                                if (min82 ==0 && sec82 == 30){
+                                audio1.play() 
+                                }
+                                }
+                                function reset反方結辯() {
+                                    clearInterval(mytimer82);
+                                    min82 = 4;
+                                    sec82 = 00;
+                                    document.getElementById("demo82").innerHTML = min82 + ":0" + sec82 ;
+                                    control82 = 1;
+                                }
+                                function pause反方結辯() {
+                                    clearInterval(mytimer82);
+                                    control82 = 1;
+                                }
+                            </script>
+                </h1>
+                </div>
+            </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="./index.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/fullpage.min.js" ></script>
+    <script>
+        new fullpage('#fullpage', {
+            autoScrolling:true,
+            navigation:true,
+            navigationTooltips:['首頁','陳詞','質詢','小結','自由辯論','結辯'],
+            slidesNavigation:true,
+        })
+    </script>
+</body>
+</html>
